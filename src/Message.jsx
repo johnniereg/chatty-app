@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 class Message extends Component {
   render() {
+    console.log("Rendering <Message/>");
     return (
         <div>
           <div className="message">
@@ -14,6 +15,7 @@ class Message extends Component {
         </div>
 
     );
+
   }
 }
 
