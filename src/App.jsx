@@ -22,21 +22,32 @@ class App extends Component {
       ]
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
   }
 
+  // Takes in submission of new messages and adds to message array.
   handleSubmit(content) {
     console.log(content);
     const newMessage = {
       id: (this.state.messages.length + 1),
-      username: "Test",
+      username: this.state.currentUser.name,
       content: content
     };
     const messages = this.state.messages.concat(newMessage);
     this.setState({
-
       messages: messages
     })
-    
+  }
+
+  // Updates current user name when changed in form.
+  handleNameChange(name) {
+    let newName = name
+    if (newName === '') {
+      newName = 'Anonymous';
+    }
+    this.setState({
+      currentUser: { name: newName }
+    })
   }
 
   componentDidMount() {
@@ -60,7 +71,7 @@ class App extends Component {
           <a href="/" className="navbar-brand">Chatty</a>
         </nav>
         <MessageList messages={ this.state.messages } />
-        <ChatBar handleSubmit={this.handleSubmit} currentUser={ this.state.currentUser } />
+        <ChatBar handleSubmit={ this.handleSubmit } handleNameChange={ this.handleNameChange } currentUser={ this.state.currentUser } />
       </div>
     );
   }
