@@ -13,9 +13,7 @@ class Message extends Component {
             Anonymous1 changed their name to nomnom.
           </div> */}
         </div>
-
     );
-
   }
 }
 

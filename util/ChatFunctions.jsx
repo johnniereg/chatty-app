@@ -24,3 +24,18 @@ export const handleNameChange = function(name) {
         currentUser: { name: newName }
     })
 }
+
+// Listens for 'enter' and submits, then clears field.
+export const getMessageContent = function(event) {
+    let content = event.target.value;
+    if (event.key === 'Enter') {
+        this.props.handleSubmit(content);
+        event.target.value = ''; // Clears out input field afterwards.
+    }
+}
+
+// Update username when focus leaves username field.
+export const getNewUserName = function(event) {
+    let name = event.target.value;
+    this.props.handleNameChange(name);
+}
