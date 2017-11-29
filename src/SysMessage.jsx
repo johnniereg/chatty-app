@@ -5,8 +5,8 @@ class SysMessage extends Component {
         console.log("Rendering <SysMessage/>");
         return (
             <div>
-                <div className="message">
-                    <span className="message system"> { this.props.content } </span>
+                <div className="message system">
+                    { this.props.content }
                 </div>
             </div>
         );
