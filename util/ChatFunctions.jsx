@@ -45,5 +45,7 @@ export const getMessageContent = function(event) {
 // Update username when focus leaves username field.
 export const getNewUserName = function(event) {
     let name = event.target.value;
-    this.props.handleNameChange(name);
+    if (name !== this.state.username) {
+        this.props.handleNameChange(name);
+    }
 }
