@@ -5,14 +5,15 @@ class ChatBar extends Component {
 
   constructor(props) {
     super(props);
-    this.getMessageContent = getMessageContent.bind(this);
-    this.getNewUserName = getNewUserName.bind(this);
     this.state = {
       username: this.props.currentUser.name
     }
+    this.getMessageContent = getMessageContent.bind(this);
+    this.getNewUserName = getNewUserName.bind(this);
   }
-
+  
   render() {
+    
     return (
       <footer className="chatbar">
         <input className="chatbar-username" defaultValue={ this.state.username } onBlur={ this.getNewUserName } />

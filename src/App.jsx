@@ -36,7 +36,7 @@ class App extends Component {
     }
 
     this.socket.addEventListener('message', (msg) => {
-      console.log(msg);
+      console.log('We received this message: ', msg);
     })
   }
 
