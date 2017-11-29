@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
-
+import { handleSubmit, handleNameChange } from '../util/ChatFunctions.jsx';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: { name: "Bob" }, // optional. if currentUser is not defined, it means the user is Anonymous
+      currentUser: { name: "Anonymous" }, // optional. if currentUser is not defined, it means the user is Anonymous
       messages: [
         {
           id: 1,
@@ -22,33 +22,8 @@ class App extends Component {
         }
       ]
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-  }
-
-  // Takes in submission of new messages and adds to message array.
-  handleSubmit(content) {
-    console.log(content);
-    const newMessage = {
-      id: (this.state.messages.length + 1),
-      username: this.state.currentUser.name,
-      content: content
-    };
-    const messages = this.state.messages.concat(newMessage);
-    this.setState({
-      messages: messages
-    })
-  }
-
-  // Updates current user name when changed in form.
-  handleNameChange(name) {
-    let newName = name
-    if (newName === '') {
-      newName = 'Anonymous';
-    }
-    this.setState({
-      currentUser: { name: newName }
-    })
+    this.handleNameChange = handleNameChange.bind(this);
+    this.handleSubmit = handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -77,4 +52,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
