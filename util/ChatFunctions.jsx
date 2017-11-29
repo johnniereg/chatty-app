@@ -4,19 +4,30 @@ import React, { Component } from 'react';
 export const handleSubmit = function(content) {
 
     const newMessage = {
+        type: 'chatMsg',
         username: this.state.currentUser.name,
         content: content
     };
-
     this.socket.send(JSON.stringify(newMessage));
 }
 
 // Updates current user name when changed in form.
 export const handleNameChange = function(name) {
+    let oldName = this.state.currentUser.name;
     let newName = name;
+
     if (newName === '') {
         newName = 'Anonymous';
     }
+    
+    const sysMessage = {
+        type: 'sysMsg',
+        oldName: oldName,
+        newName: newName 
+    }
+
+    this.socket.send(JSON.stringify(sysMessage));
+
     this.setState({
         currentUser: { name: newName }
     })

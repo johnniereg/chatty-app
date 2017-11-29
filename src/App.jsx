@@ -26,8 +26,8 @@ class App extends Component {
     }
 
     this.socket.addEventListener('message', (msg) => {
-      let messageObj = JSON.parse(msg.data);
-      console.log(messageObj);
+      let msgReceived = msg.data;
+      let messageObj = JSON.parse(msgReceived);
       this.setState({ messages: this.state.messages.concat(messageObj) });
     });
   }
