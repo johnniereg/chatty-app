@@ -7,18 +7,19 @@ import { handleSubmit, handleNameChange } from '../util/ChatFunctions.jsx';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.socket = null;
     this.state = {
-      currentUser: { name: "Anonymous" }, // optional. if currentUser is not defined, it means the user is Anonymous
+      currentUser: { name: 'Anonymous' }, // optional. if currentUser is not defined, it means the user is Anonymous
       messages: [
         {
           id: 1,
-          username: "Bob",
-          content: "Has anyone seen my marbles?",
+          username: 'Bob',
+          content: 'Has anyone seen my marbles?',
         },
         {
           id: 2,
-          username: "Anonymous",
-          content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
+          username: 'Anonymous',
+          content: 'No, I think you lost them. You lost your marbles Bob. You lost them for good.'
         }
       ]
     };
@@ -27,24 +28,24 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount <App />");
-    setTimeout(() => {
-      console.log("Simulating incoming message");
-      // Add a new message to the list of messages in the data store
-      const newMessage = { id: 3, username: "Michelle", content: "Hello there!" };
-      const messages = this.state.messages.concat(newMessage)
-      // Update the state of the app component.
-      // Calling setState will trigger a call to render() in App and all child components.
-      this.setState({ messages: messages })
-    }, 3000);
+    console.log('componentDidMount <App />');
+    this.socket = new WebSocket('ws://localhost:3001');
+
+    this.socket.onopen = function(event) {
+      console.log("Connected to server.");
+    }
+
+    this.socket.addEventListener('message', (msg) => {
+      console.log(msg);
+    })
   }
 
   render() {
-    console.log("Rendering <App/>");
+    console.log('Rendering <App/>');
     return (
       <div>
-        <nav className="navbar">
-          <a href="/" className="navbar-brand">Chatty</a>
+        <nav className='navbar'>
+          <a href='/' className='navbar-brand'>Chatty</a>
         </nav>
         <MessageList messages={ this.state.messages } />
         <ChatBar handleSubmit={ this.handleSubmit } handleNameChange={ this.handleNameChange } currentUser={ this.state.currentUser } />
