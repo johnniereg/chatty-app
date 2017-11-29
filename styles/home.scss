@@ -1,9 +1,14 @@
 body {
   background: lightskyblue;
   color: black;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   font-size: 14px;
   margin: 70px 0;
+}
+
+main {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .chatbar {
@@ -21,8 +26,8 @@ body {
 .chatbar-username {
   border: 1px solid black;
   display: block;
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
+  line-height: 75px;
   margin: 5px;
   padding: 0 9px;
 }
