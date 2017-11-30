@@ -26,17 +26,22 @@ export const handleNameChange = function(name) {
         newName: newName 
     }
 
-    this.socket.send(JSON.stringify(sysMessage));
+    if (newName !== oldName) {
+        this.socket.send(JSON.stringify(sysMessage));
+        this.setState({
+            currentUser: { name: newName }
+        })
+    }
 
-    this.setState({
-        currentUser: { name: newName }
-    })
 }
 
 // Listens for 'enter' and submits, then clears field.
 export const getMessageContent = function(event) {
     let content = event.target.value;
     if (event.key === 'Enter') {
+        if (content === '') {
+            return;
+        }
         this.props.handleSubmit(content);
         event.target.value = ''; // Clears out input field afterwards.
     }
@@ -45,7 +50,12 @@ export const getMessageContent = function(event) {
 // Update username when focus leaves username field.
 export const getNewUserName = function(event) {
     let name = event.target.value;
-    if (name !== this.state.username) {
-        this.props.handleNameChange(name);
+    this.props.handleNameChange(name);
+}
+
+export const makeBlur = function(event) {
+    if (event.key === 'Enter') {
+        this.refs.message.focus();
     }
+
 }

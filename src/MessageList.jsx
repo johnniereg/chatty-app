@@ -8,7 +8,6 @@ class MessageList extends Component {
     super(props);
   }
 
-  
   render() {
     const messages = this.props.messages.map((message) => {
       if (message.type === 'chatMsg') {

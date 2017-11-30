@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { getMessageContent, getNewUserName } from '../util/ChatFunctions.jsx';
+import { getMessageContent, getNewUserName, makeBlur } from '../util/ChatFunctions.jsx';
 
 class ChatBar extends Component {
 
@@ -10,14 +10,15 @@ class ChatBar extends Component {
     }
     this.getMessageContent = getMessageContent.bind(this);
     this.getNewUserName = getNewUserName.bind(this);
+    this.makeBlur = makeBlur.bind(this);
   }
   
   render() {
     
     return (
       <footer className="chatbar">
-        <input className="chatbar-username" defaultValue={ this.state.username } onBlur={ this.getNewUserName } />
-        <input className="chatbar-message" placeholder="Type a message and hit ENTER" onKeyPress={ this.getMessageContent } />
+        <input className="chatbar-username" defaultValue={ this.state.username } onBlur={ this.getNewUserName } onKeyPress={ this.makeBlur } />
+        <input className="chatbar-message" ref="message" placeholder="Type a message and hit ENTER" onKeyPress={ this.getMessageContent } />
       </footer>
     );
   }
