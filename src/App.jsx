@@ -10,7 +10,8 @@ class App extends Component {
     this.socket = null;
     this.state = {
       currentUser: { name: 'Anonymous' }, // optional. if currentUser is not defined, it means the user is Anonymous
-      messages: []
+      messages: [],
+      clients: 0
     };
     this.handleNameChange = handleNameChange.bind(this);
     this.handleSubmit = handleSubmit.bind(this);
@@ -28,6 +29,11 @@ class App extends Component {
     this.socket.addEventListener('message', (msg) => {
       let msgReceived = msg.data;
       let messageObj = JSON.parse(msgReceived);
+
+      if (messageObj.type === 'clients') {
+        this.setState({ clients: messageObj.count })
+      }
+      
       this.setState({ messages: this.state.messages.concat(messageObj) });
     });
   }
@@ -38,7 +44,8 @@ class App extends Component {
     return (
       <div>
         <nav className='navbar'>
-          <a href='/' className='navbar-brand'>Chatty</a>
+          <a href='/' className='navbar-brand'>jChat</a>
+          <span className='navbar-brand total-clients'> Total users online: { this.state.clients } </span>
         </nav>
         <MessageList messages={ this.state.messages } />
         <ChatBar handleSubmit={ this.handleSubmit } handleNameChange={ this.handleNameChange } currentUser={ this.state.currentUser } />
