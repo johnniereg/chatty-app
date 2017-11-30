@@ -13,14 +13,24 @@ class ChatBar extends Component {
     this.makeBlur = makeBlur.bind(this);
   }
   
-  render() {
+  render() { 
+
+    if (this.state.username === 'Anonymous') {
+      return (
+        <footer className="chatbar">
+          <input className="chatbar-username" placeholder="Your Name (Optional)" onBlur={this.getNewUserName} onKeyPress={this.makeBlur} />
+          <input className="chatbar-message" ref="message" placeholder="Type a message and hit ENTER" onKeyPress={this.getMessageContent} />
+        </footer>
+      )
+    } else {
+      return (
+        <footer className="chatbar">
+          <input className="chatbar-username" defaultValue={this.state.username} placeholder="Your Name (Optional)"  onBlur={ this.getNewUserName } onKeyPress={ this.makeBlur } />
+          <input className="chatbar-message" ref="message" placeholder="Type a message and hit ENTER" onKeyPress={ this.getMessageContent } />
+        </footer>
+      );
+    }
     
-    return (
-      <footer className="chatbar">
-        <input className="chatbar-username" defaultValue={ this.state.username } onBlur={ this.getNewUserName } onKeyPress={ this.makeBlur } />
-        <input className="chatbar-message" ref="message" placeholder="Type a message and hit ENTER" onKeyPress={ this.getMessageContent } />
-      </footer>
-    );
   }
 }
 
