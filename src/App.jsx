@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       currentUser: { name: 'Anonymous' }, // optional. if currentUser is not defined, it means the user is Anonymous
       messages: [],
+      userHex: '#000000',
       clients: 0
     };
     this.handleNameChange = handleNameChange.bind(this);
@@ -26,14 +27,24 @@ class App extends Component {
       console.log("Connected to server.");
     }
 
+    // @TODO separate concerns and refactor
     this.socket.addEventListener('message', (msg) => {
       let msgReceived = msg.data;
       let messageObj = JSON.parse(msgReceived);
 
+      // Handle client count updates.
       if (messageObj.type === 'clients') {
         this.setState({ clients: messageObj.count })
+        return;
       }
-      
+
+      // Handle hex color assignment.
+      if (messageObj.type === 'hex-assign') {
+        console.log('We got assigned color: ', messageObj.hex);
+        this.setState({ userHex: messageObj.hex });
+        return;
+      }
+
       this.setState({ messages: this.state.messages.concat(messageObj) });
     });
   }

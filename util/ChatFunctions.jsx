@@ -6,6 +6,7 @@ export const handleSubmit = function(content) {
     const newMessage = {
         type: 'chatMsg',
         username: this.state.currentUser.name,
+        hex: this.state.userHex,
         content: content
     };
     this.socket.send(JSON.stringify(newMessage));
