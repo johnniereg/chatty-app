@@ -6,17 +6,18 @@ class Message extends Component {
 
     const { userhex, content, username } = this.props;
 
+    // Allows us to manipulate the content passed down.
     let msgContent = content;
 
     let divStyle = {
       color: userhex
     }
 
-    if (/(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png)/.test(content)) {
+    // Checks content string to see if it is a link with image file type.
+    if (/(http(s?):)|([/|.|\w|\s])*\.(?:jpg|gif|png|jpeg)/.test(content)) {
       msgContent = (<img className="message-image" src={content}/>)
     }
 
-   
     return (
         <div>
           <div className="message">
@@ -25,9 +26,6 @@ class Message extends Component {
           </div>
         </div>
     );
-
-    
-
   }
 }
 
