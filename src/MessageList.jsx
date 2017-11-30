@@ -15,6 +15,7 @@ class MessageList extends Component {
           key={ message.id }
           username={ message.username }
           content={ message.content }
+          userhex={ message.userhex }
         />
       }
       if (message.type === 'sysMsg') {
