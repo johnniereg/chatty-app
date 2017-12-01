@@ -20,6 +20,7 @@ class MessageList extends Component {
     this.scrollToBottom();
   }
 
+
   render() {
     const messages = this.props.messages.map((message) => {
       if (message.type === 'chatMsg') {
