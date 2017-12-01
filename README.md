@@ -1,7 +1,7 @@
 Chatty App
 =====================
 
-A live chat application built withgit  ReactJS.
+A live chat application built with ReactJS.
 
 ### Usage
 
