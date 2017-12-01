@@ -28,18 +28,18 @@ Users are assigned a unique colour for their name on connection. Users can submi
 
 ### Usage
 
-Install the dependencies and start the server.
-
-```
-npm install
-npm start
-open http://localhost:3000
-```
-
 Download, install and run the Chatty-Server:
 [https://github.com/johnniereg/chatty-server](https://github.com/johnniereg/chatty-server)
 
 ```
 npm install
 npm start
+```
+
+Install the Chatty App dependencies and start the server.
+
+```
+npm install
+npm start
+open http://localhost:3000
 ```
