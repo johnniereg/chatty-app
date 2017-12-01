@@ -1,19 +1,13 @@
-Chatty App
+# Chatty App
 =====================
 
-A live chat application built using ReactJS.
+A live chat application built using ReactJS. 
 
+This app requires the Chatty-Server found here: [https://github.com/johnniereg/chatty-server](https://github.com/johnniereg/chatty-server)
 
+## Final Product
 
-### Usage
-
-Install the dependencies and start the server.
-
-```
-npm install
-npm start
-open http://localhost:3000
-```
+!["App Screenshot"](https://github.com/johnniereg/chatty-app/blob/code-cleanup/docs/chatty-app.png)
 
 ### Dependencies
 
@@ -30,4 +24,13 @@ open http://localhost:3000
 * webpack-dev-server
 * react
 * react-dom
-* uuid
+
+### Usage
+
+Install the dependencies and start the server.
+
+```
+npm install
+npm start
+open http://localhost:3000
+```
