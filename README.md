@@ -26,7 +26,7 @@ Users are assigned a unique colour for their name on connection. Users can submi
 * react
 * react-dom
 
-### Usage
+### Getting Started
 
 Download, install and run the Chatty-Server:
 [https://github.com/johnniereg/chatty-server](https://github.com/johnniereg/chatty-server)
