@@ -46,7 +46,9 @@ class App extends Component {
       }
 
       this.setState({ messages: this.state.messages.concat(messageObj) });
+      
     });
+    
   }
   
 
