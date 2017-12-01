@@ -16,17 +16,36 @@ class ChatBar extends Component {
   render() { 
 
     if (this.state.username === 'Anonymous') {
+      // Keep username field empty for anonymous users.
       return (
         <footer className="chatbar">
-          <input className="chatbar-username" placeholder="Your Name (Optional)" onBlur={this.getNewUserName} onKeyPress={this.makeBlur} />
-          <input className="chatbar-message" ref="message" placeholder="Type a message and hit ENTER" onKeyPress={this.getMessageContent} />
+          <input className="chatbar-username" 
+            placeholder="Your Name (Optional)" 
+            onBlur={this.getNewUserName} 
+            onKeyPress={this.makeBlur} 
+          />
+          <input className="chatbar-message" 
+            ref="message" 
+            placeholder="Type a message and hit ENTER" 
+            onKeyPress={this.getMessageContent} 
+          />
         </footer>
       )
     } else {
+      // Put current username in name field for non-anonymous users.
       return (
         <footer className="chatbar">
-          <input className="chatbar-username" defaultValue={this.state.username} placeholder="Your Name (Optional)"  onBlur={ this.getNewUserName } onKeyPress={ this.makeBlur } />
-          <input className="chatbar-message" ref="message" placeholder="Type a message and hit ENTER" onKeyPress={ this.getMessageContent } />
+          <input className="chatbar-username" 
+            defaultValue={this.state.username} 
+            placeholder="Your Name (Optional)"  
+            onBlur={ this.getNewUserName } 
+            onKeyPress={ this.makeBlur } 
+          />
+          <input className="chatbar-message" 
+            ref="message" 
+            placeholder="Type a message and hit ENTER" 
+            onKeyPress={ this.getMessageContent } 
+          />
         </footer>
       );
     }

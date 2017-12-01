@@ -8,6 +8,7 @@ class MessageList extends Component {
     super(props);
   }
 
+  // Function to scroll view to latest chat message.
   scrollToBottom = () => {
     this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
   }
@@ -19,7 +20,6 @@ class MessageList extends Component {
   componentDidUpdate() {
     this.scrollToBottom();
   }
-
 
   render() {
     const messages = this.props.messages.map((message) => {
@@ -39,13 +39,12 @@ class MessageList extends Component {
       }
     });
 
-    console.log("Rendering <MessageList/>");
-
     return (
       <div>
         <main className="messages">
           { messages }
         </main>
+        {/* Div to point scrolling function towards for chat renders. */}
         <div style={{ float: "left", clear: "both" }}
           ref={(el) => { this.messagesEnd = el; }}>
         </div>  

@@ -36,7 +36,6 @@ class App extends Component {
 
       // Handle hex color assignment.
       if (messageObj.type === 'hex-assign') {
-        console.log('We got assigned color: ', messageObj.hex);
         this.setState({ userHex: messageObj.hex });
         return;
       }

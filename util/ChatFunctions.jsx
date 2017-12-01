@@ -54,6 +54,7 @@ export const getNewUserName = function(event) {
     this.props.handleNameChange(name);
 }
 
+// Hitting enter in name field moves to text field and blurs.
 export const makeBlur = function(event) {
     if (event.key === 'Enter') {
         this.refs.message.focus();
