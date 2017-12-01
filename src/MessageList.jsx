@@ -8,18 +8,6 @@ class MessageList extends Component {
     super(props);
   }
 
-  scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  componentDidMount() {
-    this.scrollToBottom();
-  }
-
-  componentDidUpdate() {
-    this.scrollToBottom();
-  }
-
   render() {
     const messages = this.props.messages.map((message) => {
       if (message.type === 'chatMsg') {
@@ -45,9 +33,6 @@ class MessageList extends Component {
         <main className="messages">
           { messages }
         </main>
-        <div style={{ float: "left", clear: "both" }}
-          ref={(el) => { this.messagesEnd = el; }}>
-        </div>  
       </div>
     );
   }
