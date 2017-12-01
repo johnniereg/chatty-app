@@ -1,6 +1,8 @@
 # Chatty App
 
-A live chat application built using ReactJS. Users are assigned a unique colour for their name on connection. Users can submit image links and they will be rendered in the chat. New users will see the five most recent messages on connection. All users see a count of active users.
+A live chat application built using ReactJS. 
+
+Users are assigned a unique colour for their name on connection. Users can submit image links and they will be rendered in the chat. New users will see the five most recent messages on connection. All users see a count of active users.
 
 This app requires the Chatty-Server found here: [https://github.com/johnniereg/chatty-server](https://github.com/johnniereg/chatty-server)
 
