@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
+import NavBar from './NavBar.jsx';
 import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 import { handleSubmit, handleNameChange } from '../util/ChatFunctions.jsx';
-
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.socket = null;
     this.state = {
-      currentUser: { name: 'Anonymous' }, // optional. if currentUser is not defined, it means the user is Anonymous
+      currentUser: { name: 'Anonymous' },
       messages: [],
       userHex: '#000000',
       clients: 0
@@ -19,18 +19,14 @@ class App extends Component {
   }
 
   componentDidMount(){
-    console.log('componentDidMount <App />');
-
     this.socket = new WebSocket('ws://localhost:3001');
-
     this.socket.onopen = function(event) {
       console.log("Connected to server.");
     }
 
-    // @TODO separate concerns and refactor
+    // Client message listener.
     this.socket.addEventListener('message', (msg) => {
-      let msgReceived = msg.data;
-      let messageObj = JSON.parse(msgReceived);
+      let messageObj = JSON.parse(msg.data);
 
       // Handle client count updates.
       if (messageObj.type === 'clients') {
@@ -45,21 +41,21 @@ class App extends Component {
         return;
       }
 
+      // Handle system messages and user messages.
       this.setState({ messages: this.state.messages.concat(messageObj) });
     });
   }
   
 
   render(){
-    console.log('Rendering <App/>');
+
+    const { clients, messages, currentUser } = this.state;
+
     return (
       <div>
-        <nav className='navbar'>
-          <a href='/' className='navbar-brand'>jChat</a>
-          <span className='navbar-brand total-clients'> Total users online: { this.state.clients } </span>
-        </nav>
-        <MessageList messages={ this.state.messages } />
-        <ChatBar handleSubmit={ this.handleSubmit } handleNameChange={ this.handleNameChange } currentUser={ this.state.currentUser } />
+        <NavBar clients={ clients } />
+        <MessageList messages={ messages } />
+        <ChatBar handleSubmit={ this.handleSubmit } handleNameChange={ this.handleNameChange } currentUser={ currentUser } />
       </div>
     );
   }
